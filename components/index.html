@@ -11,6 +11,7 @@
 
 <body>
   <div id="container"></div>
+
   <script type="text/babel">
     class HelloWorld extends React.Component{
       render(){
@@ -18,11 +19,19 @@
       }
     }
 
+    class Buttonify extends React.Component {
+      render(){
+        return(
+          <div>
+            <button type={this.props.behavior}>{this.props.children}</button>
+          </div>
+        );
+      }
+    }
+
     ReactDOM.render(
       <div>
-        <HelloWorld greetTarget="Batman"/>
-        <HelloWorld greetTarget="Iron Man"/>
-        <HelloWorld greetTarget="Mega Man"/>
+        <Buttonify behavior="submit">Send Data</Buttonify>
       </div>,
        document.querySelector("#container")
      );
