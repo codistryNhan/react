@@ -15,8 +15,35 @@
   <script type="text/babel">
   let container = document.querySelector('#container');
   class LightningCounter extends React.Component {
+    constructor(props, context){
+      super(props, context);
+
+      this.state = {
+        strikes: 0,
+      };
+
+      this.timerTick = this.timerTick.bind(this);
+    }
+
+    timerTick(){
+      this.setState({
+        strikes: this.state.strikes + 100
+      });
+    }
+
+    componentDidMount(){
+      setInterval(this.timerTick, 1000)
+    }
+
     render(){
-      return (<h1> Hello! </h1>);
+      let counterStyle = {
+        color: "#66FFFF",
+        fontSize: 50,
+      };
+
+      let count = this.state.strikes.toLocaleString();
+
+      return (<h1 style={counterStyle}> {count} </h1>);
     }
   }
 
@@ -35,6 +62,8 @@
       return(
         <div style={divStyle}>
           <LightningCounter/>
+          <h2>LIGHTNING STRIKES</h2>
+          <h2>WORLDWIDE</h2>
         </div>
       );
     }
