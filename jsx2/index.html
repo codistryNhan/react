@@ -14,7 +14,30 @@
   </div>
 
   <script type="text/babel">
+  //Returning multiple Elements
+    class Stuff extends React.Component {
+      render(){
+        return (
+          <React.Fragment>
+            <p>I am</p>
+            <p>returning a list</p>
+            <p>of things!</p>
+            <p>{this.props.color}</p>
+            {/* This is a child comment*/}
+          </React.Fragment>
+        );
+      }
+    }
 
+  //JSX can be anywyere
+  var stuffComponent = <Stuff color="#2F004F"></Stuff>;
+
+  ReactDOM.render(
+    <div>
+      {stuffComponent}
+    </div>,
+    document.querySelector("#container")
+  );
   </script>
 </body>
 </html>
