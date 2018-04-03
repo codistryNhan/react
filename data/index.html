@@ -29,29 +29,32 @@
           borderRadius: "50%",
           width: 100,
           height: 100,
-        };
+        }
 
-        return(
+        return (
           <div style={circleStyle}>
           </div>
-        );
+        )
       }
     }
 
-    let container = document.querySelector("#container");
 
-      let colors = ["#393E41", "#E94F37", "#1C89BF", "#A1D363","#85FFC7", "#297373", "#FF8552", "#A40E4C"];
-      let renderData = [];
+    let colors = ["#393E41", "#E94F37", "#1C89BF", "#A1D363",
+                "#85FFC7", "#297373", "#FF8552", "#A40E4C"];
+    let renderData = [];
 
-      for(let i = 0; i < colors.length; i++){
-        let color = colors[i];
-        renderData.push(<Circle key={i + color}bgColor={colors[i]} />);
-      }
+    for(let i = 0; i < colors.length; i++){
+      let color = colors[i];
+      renderData.push(<Circle key={i + color} bgColor={color}/>);
+    }
+
+    let container = document.querySelector('#container');
 
     ReactDOM.render(
       <div>
         {renderData}
-      </div>,
+      </div>
+      ,
       container
     );
 
