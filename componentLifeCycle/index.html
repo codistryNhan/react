@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Events</title>
+  <title>Components Life Cycle</title>
   <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
   <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
   <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
@@ -20,6 +20,32 @@
   </div>
 
   <script type="text/babel">
+    /*
+      Lifecycle
+
+      componentWillMount
+        before
+
+      componentDidMount
+        right after mount
+
+      componentWillUnmount
+        right before unmount
+
+      componentWillUpdate
+        right before update
+
+      comonentDidUpdate
+        right after update
+
+      shouldComponentUpdate
+        before update
+
+      componentWillReceiveProps
+
+      componentDidCatch
+    */
+
     class Counter extends React.Component {
       render(){
          let textStyle = {
@@ -41,6 +67,8 @@
       constructor(props){
         super(props);
 
+        console.log("constructor: Default state time");
+
         this.state = {
           count: 0
         }
@@ -54,12 +82,48 @@
         if(e.shiftKey){
           count += 10;
         } else {
-          count += 1;
+          count += + 1;
         }
 
         this.setState({
             count: count
         })
+      }
+
+      componentWillUpdate(newProps, newState){
+        console.log("componentWillUpdate: Component is about to update!");
+      }
+
+      componentDidUpdate(currentProps, currentState){
+        console.log("componentDidUpdate: Component just updated!");
+      }
+
+      componentWillMount(){
+        console.log("componentWillMount: Component is about to mount!");
+      }
+
+      componentDidMount(){
+        console.log("componentDidMount: Component just mounted!");
+      }
+
+      componentWillUnmount(){
+        console.log("Component is about to be removed from the DOM!");
+      }
+
+      shouldComponentUpdate(newProps, newState){
+        console.log("shouldComponentUpdate: Should component update?");
+
+        if(newState.count < 5){
+          console.log("shouldComponentUpdate: Component should update!");
+          return true;
+        } else {
+          ReactDOM.unmountComponentAtNode(document.querySelector("#container"));
+          return false;
+        }
+      }
+
+      componentWillReceiveProps(newProps){
+        console.log("componentWillReceiveProps: Component will get new Props");
       }
 
       render(){
@@ -91,13 +155,16 @@
       }
     }
 
+    console.log("defaultProps: Default props time");
+    CounterParent.defaultProps = {};
+
     ReactDOM.render(
       <div>
         <CounterParent />
       </div>,
       document.querySelector('#container')
     );
-
   </script>
+
 </body>
 </html>
