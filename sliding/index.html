@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Slider</title>
+
+    <style media="screen">
+      #menu {
+        width: 100vw;
+        height: 100vh;
+        background-color: #FFE600;
+        position: fixed;
+        top: 0;
+        left: 0;
+
+        transition:  transform ease .5s;
+        overflow:scroll;
+        z-index:1000;
+      }
+
+      #menu.hide{
+        transform: translate3d(-100vw, 0, 0);
+      }
+
+      #menu.show{
+        transform: translate3d(0vw, 0, 0);
+        overflow: hidden;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div id="main">
+      <button id="menuButton">Menu</button>
+      <div id="menu" class="hide">
+        <ul>
+          <li>Home</li>
+          <li>Contact</li>
+          <li>About</li>
+        </ul>
+      </div>
+
+      <div id="list">
+        <ul>
+          <li>Bears</li>
+          <li>Beats</li>
+          <li>Battlestar Galatica</li>
+        </ul>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      let menuButton = document.querySelector('#menuButton');
+      let menu = document.querySelector('#menu');
+
+      menuButton.addEventListener('click', () => {
+        menu.className = 'show';
+      });
+
+      menu.addEventListener('click', ()=>{
+        menu.className = 'hide';
+      });
+    </script>
+  </body>
+</html>
